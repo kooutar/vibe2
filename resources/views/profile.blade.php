@@ -56,6 +56,14 @@
                     </div>
                     <p class="text-gray-600">{{$user->name }}</p>
                 </div>
+                <div class="mt-5 mb-5 flex space-x-2">
+                    <a class="flex-1 py-2 px-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-sm font-medium rounded hover:from-pink-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                        Ajouter
+                    </a>
+                    <a href="{{ route('consulteProfile',$user->id)}}" class="py-2 px-3 border border-gray-300 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                        Message
+                    </a>
+                </div>
                 <!-- Bio Section -->
                 <div class="bg-pink-50 p-4 rounded-lg mb-6 relative">
                     <button class="absolute top-2 right-2 text-pink-500 hover:text-pink-600">
@@ -100,33 +108,7 @@
         <div class="max-w-2xl mx-auto">
             <!-- Create Post Form -->
             
-            <div class="space-y-6">
-                <h2 class="text-xl font-bold text-purple-800 mb-4">Mes posts</h2>
-                 @if($posts!=null)
-                @foreach($posts as $post)
-                <div class="bg-white rounded-lg shadow-lg p-6 relative">
-                    <div class="absolute top-4 right-4 flex space-x-2">
-                        <button onclick="openEditModal('{{ $post->id }}', '{{ $post->titre }}', '{{ $post->text }}')" class="text-purple-500 hover:text-purple-600">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST" class="inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-pink-500 hover:text-pink-600">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </form>
-                    </div>
-
-                    <h3 class="text-lg font-semibold text-purple-700 mb-2">{{ $post->titre }}</h3>
-                    <p class="text-gray-600 mb-4">{{ $post->text }}</p>
-                    <div class="text-sm text-gray-500">
-                        Publié le {{ $post->created_at->format('d/m/Y à H:i') }}
-                    </div>
-                </div>
-                @endforeach
-                @endif
-            </div>
+            
         </div>
     </div>
 

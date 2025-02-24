@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('invitation', function (Blueprint $table) {
+        Schema::create('invitations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('iduser');
+            $table->foreignId('sender_id')->constrained('users')->onDelete('cascade'); 
+            $table->foreignId('receiver_id')->constrained('users')->onDelete('cascade'); 
+            $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('invitation');
+        Schema::dropIfExists('invitations');
     }
 };

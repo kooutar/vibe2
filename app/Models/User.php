@@ -58,4 +58,19 @@ class User extends Authenticatable
 //        $iduserConnecte=auth()->id();
 //
 //    }
+
+public function sentInvitations()
+{
+    return $this->belongsToMany(User::class, 'invitations', 'sender_id', 'receiver_id')
+                ->withPivot('status')
+                ->withTimestamps();
+}
+
+// Invitations reçues par l'utilisateur
+public function receivedInvitations()
+{
+    return $this->belongsToMany(User::class, 'invitations', 'receiver_id', 'sender_id')
+                ->withPivot('status')
+                ->withTimestamps();
+}
 }

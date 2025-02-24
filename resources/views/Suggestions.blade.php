@@ -37,7 +37,7 @@
 </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Profil 1 -->
-
+      
             @foreach( $users as $user)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div class="p-5">
@@ -56,9 +56,15 @@
                     </div>
                     
                     <div class="mt-5 flex space-x-2">
-                        <a class="flex-1 py-2 px-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-sm font-medium rounded hover:from-pink-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
-                            Ajouter
-                        </a>
+                        <form action="{{route('addFreind')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="userEnvoye_id" value="{{auth()->id()}}">
+                            <input type="hidden" name="userRecu_id" value="{{ $user->id }}">
+                            <button class="flex-1 py-2 px-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-sm font-medium rounded hover:from-pink-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                                Ajouter
+                            </button>
+                        </form>
+                        
                         <a href="{{ route('consulteProfile',$user->id)}}" class="py-2 px-3 border border-gray-300 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500">
                             voir profile
                         </a>

@@ -71,7 +71,7 @@ class postController extends Controller
     }
 
     public function getPostUsr($id){
-         $posts=Post::find($id);
+         $posts=Post::findOrFail($id);
          return view('profile', compact('posts'));
     }
    

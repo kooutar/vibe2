@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\postController;
+use App\Http\Controllers\FreindController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\redrecteController;
 
@@ -28,7 +29,7 @@ Route::post('/registreForm',[AuthController::class,'store'])->name('registreForm
 Route::post('/connectionForm',[AuthController::class,'connection'])->name('connectionForm');
 Route::post('/uploadImage',[profileController::class,'upload'])->name('uploadImage');
 Route::post('/addPost',[postController::class,'store'])->name('poste.store');
-
+Route::post('/addFreind',[FreindController::class,'addFreind'])->name('addFreind');
 
 Route::delete('/posts/{id}', [postController::class, 'destroy'])->name('posts.destroy');
 Route::put('/posts/{id}', [postController::class, 'update'])->name('posts.update');
