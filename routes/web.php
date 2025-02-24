@@ -22,6 +22,8 @@ Route::get('/logout', function () {
     return redirect('/');
 })->name('logout');
 
+Route::get('/profile/{id}',[profileController::class,'ToProfile'])->name('consulteProfile');
+
 Route::post('/registreForm',[AuthController::class,'store'])->name('registreForm');
 Route::post('/connectionForm',[AuthController::class,'connection'])->name('connectionForm');
 Route::post('/uploadImage',[profileController::class,'upload'])->name('uploadImage');

@@ -70,5 +70,11 @@ class postController extends Controller
         return view('index',compact('posts'));
     }
 
+    public function getPostUsr($id){
+         $posts=Post::find($id);
+         return view('profile', compact('posts'));
+    }
+   
+
 
 }

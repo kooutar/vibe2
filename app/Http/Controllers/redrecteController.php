@@ -40,5 +40,7 @@ class redrecteController{
         return view('Suggestions', compact('users'));
     }
 
+  
+
 
 }
