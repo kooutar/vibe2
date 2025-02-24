@@ -56,6 +56,7 @@
                     </div>
                     
                     <div class="mt-5 flex space-x-2">
+                        @if(!Auth::user()->hasSentFriendRequest($user->id))
                         <form action="{{route('addFreind')}}" method="POST">
                             @csrf
                             <input type="hidden" name="userEnvoye_id" value="{{auth()->id()}}">
@@ -64,7 +65,10 @@
                                 Ajouter
                             </button>
                         </form>
-                        
+                        @else
+                   <button class="btn btn-secondary" disabled>Invitation envoyée</button>
+                        @endif
+
                         <a href="{{ route('consulteProfile',$user->id)}}" class="py-2 px-3 border border-gray-300 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500">
                             voir profile
                         </a>

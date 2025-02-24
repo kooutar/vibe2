@@ -73,4 +73,10 @@ public function receivedInvitations()
                 ->withPivot('status')
                 ->withTimestamps();
 }
+
+public function hasSentFriendRequest($userId)
+{
+    return $this->sentInvitations()->where('receiver_id', $userId)->exists();
+}
+
 }

@@ -36,7 +36,7 @@ class redrecteController{
         // }
 
         $users = $query->get();
-
+       
         return view('Suggestions', compact('users'));
     }
 
