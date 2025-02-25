@@ -16,6 +16,7 @@
                 <div class="flex items-center space-x-4">
                     <a href="/index" class="text-purple-700 hover:text-pink-500">Accueil</a>
                     <a href="/Suggestions" class="text-purple-700 hover:text-pink-500">Suggestions</a>
+                    <a href="/invitations" class="text-purple-700 hover:text-pink-500 border-b-2 border-pink-500">Invitations</a>
                     <a href="/logout" class="text-purple-700 hover:text-pink-500">Déconnexion</a>
                 </div>
             </div>

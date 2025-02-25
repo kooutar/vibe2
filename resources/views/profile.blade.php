@@ -57,9 +57,13 @@
                     <p class="text-gray-600">{{$user->name }}</p>
                 </div>
                 <div class="mt-5 mb-5 flex space-x-2">
+                    @if(!Auth::user()->hasSentFriendRequest($user->id))
                     <a class="flex-1 py-2 px-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-sm font-medium rounded hover:from-pink-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-pink-500">
                         Ajouter
                     </a>
+                    @else
+                    <button class="btn btn-secondary" disabled>Invitation envoyée</button>
+                         @endif
                     <a href="{{ route('consulteProfile',$user->id)}}" class="py-2 px-3 border border-gray-300 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500">
                         Message
                     </a>

@@ -4,26 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Invitation;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Return_;
-
 use function Termwind\render;
+
+use PhpParser\Node\Stmt\Return_;
+use Illuminate\Support\Facades\Auth;
 
 class FreindController extends Controller
 {
     //
     public function addFreind(Request $request)
 {
-    // Vérifie si l'invitation existe déjà
+   
     $isSent = $this->estEnvoye($request->receiver_id);
 
     if ($isSent) {
         return redirect('/Suggestions')->with([
             'message' => 'Invitation déjà envoyée',
-            'isSent' => true // Passer la variable isSent
+            'isSent' => true 
         ]);
     }
 
-    // Créer l'invitation si elle n'existe pas
+   
     Invitation::create([
         'sender_id' => auth()->id(),
         'receiver_id' => $request->userRecu_id,
@@ -42,5 +43,13 @@ class FreindController extends Controller
         ->where('receiver_id', $receiver_id)
         ->exists(); 
        
+    }
+
+    public function showRequestEnvoye(){
+        $user = Auth::user();
+        $RequestsEnvoyes = $user->receivedInvitations()->get();
+        // dd( $RequestsEnvoyes);
+        return view('invitations' , compact('RequestsEnvoyes'));
+        
     }
 }

@@ -23,6 +23,8 @@ Route::get('/logout', function () {
     return redirect('/');
 })->name('logout');
 
+Route::get('/invitations',[FreindController::class,'showRequestEnvoye']);
+
 Route::get('/profile/{id}',[profileController::class,'ToProfile'])->name('consulteProfile');
 
 Route::post('/registreForm',[AuthController::class,'store'])->name('registreForm');

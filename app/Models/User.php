@@ -61,22 +61,24 @@ class User extends Authenticatable
 
 public function sentInvitations()
 {
-    return $this->belongsToMany(User::class, 'invitations', 'sender_id', 'receiver_id')
-                ->withPivot('status')
-                ->withTimestamps();
+    return $this->belongsToMany(User::class, 'invitations', 'sender_id', 'receiver_id');
+               
 }
 
-// Invitations reçues par l'utilisateur
+
 public function receivedInvitations()
 {
-    return $this->belongsToMany(User::class, 'invitations', 'receiver_id', 'sender_id')
-                ->withPivot('status')
-                ->withTimestamps();
+    return $this->belongsToMany(User::class, 'invitations', 'receiver_id', 'sender_id');
+               
 }
 
 public function hasSentFriendRequest($userId)
 {
     return $this->sentInvitations()->where('receiver_id', $userId)->exists();
+}
+
+public function IsMyPost($idPost){
+   
 }
 
 }
