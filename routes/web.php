@@ -47,3 +47,4 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 
 
 Route::post('/accepter',[FreindController::class,'AccepterFreind'])->name('AccepterInvitation');
+Route::post('/refuser',[FreindController::class,'RefuserFreind'])->name('RefuserFreind');

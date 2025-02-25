@@ -91,8 +91,9 @@
                                     </button>
                                 </form>
                                 
-                                <form action="" method="POST">
+                                <form action="{{route('RefuserFreind')}}" method="POST">
                                     @csrf
+                                    <input type="hidden" name="id_sender" value="{{$invitation->id}}">
                                     <button type="submit" class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600 transition-colors flex items-center">
                                         <i class="fas fa-times mr-2"></i> Refuser
                                     </button>

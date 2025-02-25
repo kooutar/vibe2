@@ -58,4 +58,11 @@ class FreindController extends Controller
         $user->receivedInvitations()->wherePivot('sender_id',$request->id_sender)->updateExistingPivot($request->id_sender,['status'=>'accepted']);
         return redirect('/invitations');
     }
+
+    public function RefuserFreind(Request $request){
+       
+        $user=Auth::user();
+        $user->receivedInvitations()->wherePivot('sender_id',$request->id_sender)->updateExistingPivot($request->id_sender,['status'=>'rejected']);
+        return redirect('/invitations');
+    }
 }
