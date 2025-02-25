@@ -44,3 +44,6 @@ Route::get('/forgot-password', [redrecteController::class, 'showForgotPasswordFo
 Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
 // Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->name('password.reset');
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
+
+
+Route::post('/accepter',[FreindController::class,'AccepterFreind'])->name('AccepterInvitation');

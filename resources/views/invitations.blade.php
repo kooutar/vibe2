@@ -83,8 +83,9 @@
                             
                             <!-- Action Buttons -->
                             <div class="flex space-x-2">
-                                <form action="" method="POST">
+                                <form action="{{route('AccepterInvitation')}}" method="POST">
                                     @csrf
+                                    <input type="hidden" name="id_sender" value="{{$invitation->id}}">
                                     <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors flex items-center">
                                         <i class="fas fa-check mr-2"></i> Accepter
                                     </button>

@@ -52,4 +52,10 @@ class FreindController extends Controller
         return view('invitations' , compact('RequestsEnvoyes'));
         
     }
+
+    public function AccepterFreind(Request $request){
+        $user=Auth::user();
+        $user->receivedInvitations()->wherePivot('sender_id',$request->id_sender)->updateExistingPivot($request->id_sender,['status'=>'accepted']);
+        return redirect('/invitations');
+    }
 }

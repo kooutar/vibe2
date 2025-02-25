@@ -68,7 +68,7 @@ public function sentInvitations()
 
 public function receivedInvitations()
 {
-    return $this->belongsToMany(User::class, 'invitations', 'receiver_id', 'sender_id');
+    return $this->belongsToMany(User::class, 'invitations', 'receiver_id', 'sender_id')->wherePivot('status','pending');
                
 }
 
@@ -77,8 +77,6 @@ public function hasSentFriendRequest($userId)
     return $this->sentInvitations()->where('receiver_id', $userId)->exists();
 }
 
-public function IsMyPost($idPost){
-   
-}
+
 
 }
