@@ -56,7 +56,7 @@
                 <div class="p-5">
                     <div class="flex items-center space-x-4">
                         <div class="h-16 w-16 rounded-full bg-gradient-to-r from-pink-400 to-purple-400 flex items-center justify-center">
-                            <span class="text-xl font-bold text-white">MC</span>
+                            <span class="text-xl font-bold text-white"><img src="{{ asset('storage/'.$user->profile_image)}}" alt="" srcset=""></span>
                         </div>
                         <div class="flex-1">
                             <h3 class="text-lg font-semibold text-purple-800">{{ $user->name }}</h3>

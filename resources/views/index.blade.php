@@ -110,7 +110,7 @@
                            @forEach($post->comments as $comment)
                         <div class="space-y-4">
                             <div class="flex items-start space-x-3">
-                                <img src="/api/placeholder/32/32"
+                                <img src="{{ asset('storage/'.$comment->user->profile_image)}}"
                                      alt="Commenter"
                                      class="w-8 h-8 rounded-full">
                                 <div class="flex-1 bg-gray-50 rounded-lg p-3">
