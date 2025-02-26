@@ -83,7 +83,7 @@
                             </button>
                             <button class="flex items-center space-x-1 text-gray-500 hover:text-purple-500">
                                 <i class="far fa-comment"></i>
-                                <span>12</span>
+                                <span>{{$post->comments->count()}}</span>
                             </button>
                             <button class="flex items-center space-x-1 text-gray-500 hover:text-blue-500">
                                 <i class="far fa-share-square"></i>
@@ -94,6 +94,7 @@
 
                     <!-- Comments Section -->
                     <div class="comments-section hidden mt-4 border-t pt-4">
+                        
                         <form class="mb-4" action="{{ route('addComment')}}" method="POST">
                             @csrf
                             <input type="hidden" name="post_id" value="{{$post->id}}">
@@ -105,6 +106,8 @@
                             </button>
                         </form>
                         <!-- Sample Comment -->
+                        @if($post->comments->count()>0)
+                           @forEach($post->comments as $comment)
                         <div class="space-y-4">
                             <div class="flex items-start space-x-3">
                                 <img src="/api/placeholder/32/32"
@@ -112,13 +115,16 @@
                                      class="w-8 h-8 rounded-full">
                                 <div class="flex-1 bg-gray-50 rounded-lg p-3">
                                     <div class="flex items-center justify-between">
-                                        <h4 class="font-semibold text-gray-800">Jane Smith</h4>
+                                        <h4 class="font-semibold text-gray-800"></h4>
                                         <span class="text-sm text-gray-500">Il y a 2 heures</span>
                                     </div>
-                                    <p class="text-gray-600">Super post ! Merci pour le partage.</p>
+                                    <p class="text-gray-600">{{$comment->commentaire}}</p>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
+                        @endif
+                        
                     </div>
                 </div>
             </div>

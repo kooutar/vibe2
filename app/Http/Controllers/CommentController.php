@@ -18,6 +18,11 @@ class CommentController extends Controller
         $commente->id_user=$user->id;
         $commente->id_post=$post->id;
         $commente->commentaire=$request->comment;
-       $post->comments()->save($commente);
+        $post->comments()->save($commente);
+        return redirect('/index');
     }
+    
+
+
+   
 }

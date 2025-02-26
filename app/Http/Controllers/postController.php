@@ -36,26 +36,26 @@ class postController extends Controller
 
 
 
-        // Supprimer le post
+       
         $post->delete();
 
         return redirect()->back()->with('success', 'Post supprimé avec succès.');
     }
 
     public function update(Request $request, $id) {
-        // Validation
+       
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
         ]);
 
-        // Trouver le post
+        
         $post = Post::find($id);
         if (!$post) {
             return redirect()->back()->with('error', 'Post non trouvé.');
         }
 
-        // Mettre à jour le post
+       
         $post->update([
             'titre' => $request->title,
             'text' => $request->content,
@@ -71,7 +71,7 @@ class postController extends Controller
     }
 
     public function getPostUsr($id){
-         $posts=Post::findOrFail($id);
+        $posts = Post::with(['comments.user'])->findOrFail($id);
          return view('profile', compact('posts'));
     }
    

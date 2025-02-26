@@ -15,9 +15,9 @@ Route::get('/', function () {
 
 Route::get('/registre' ,[redrecteController::class ,'index']);
 Route::get('/connection',[redrecteController::class,'connection']);
-Route::get('/dashboard',[redrecteController::class,'dashboard']);
+Route::get('/dashboard',[profileController::class,'dashboard']);
 Route::get('/reset',[redrecteController::class,'reset']);
-Route::get('/Suggestions',[redrecteController::class,'Suggestions']);
+Route::get('/Suggestions',[FreindController::class,'Suggestions']);
 Route::get('/index',[postController::class,'getAllPosts']);
 Route::get('/logout', function () {
     Auth::logout();

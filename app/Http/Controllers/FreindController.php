@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use function Termwind\render;
 
 use PhpParser\Node\Stmt\Return_;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Auth;
 
 class FreindController extends Controller
@@ -64,5 +65,17 @@ class FreindController extends Controller
         $user=Auth::user();
         $user->receivedInvitations()->wherePivot('sender_id',$request->id_sender)->updateExistingPivot($request->id_sender,['status'=>'rejected']);
         return redirect('/invitations');
+    }
+
+    function Suggestions(Request $request) {
+        $query = User::where('id', '!=', auth()->id());
+
+        // if ($request->has('search')) {
+            $query->where('name', 'LIKE', '%' . $request->search . '%');
+        // }
+
+        $users = $query->get();
+       
+        return view('Suggestions', compact('users'));
     }
 }

@@ -77,6 +77,10 @@ public function hasSentFriendRequest($userId)
     return $this->sentInvitations()->where('receiver_id', $userId)->exists();
 }
 
+public function comments(){
+    return $this->hasMany(Comment::class);
+}
+
 
 
 }

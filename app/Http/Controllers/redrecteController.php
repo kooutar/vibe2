@@ -28,17 +28,7 @@ class redrecteController{
     function reset(){
         return view('reset-password');
     }
-    function Suggestions(Request $request) {
-        $query = User::where('id', '!=', auth()->id());
-
-        // if ($request->has('search')) {
-            $query->where('name', 'LIKE', '%' . $request->search . '%');
-        // }
-
-        $users = $query->get();
-       
-        return view('Suggestions', compact('users'));
-    }
+   
 
   
 
