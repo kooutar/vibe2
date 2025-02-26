@@ -115,8 +115,8 @@
                                      class="w-8 h-8 rounded-full">
                                 <div class="flex-1 bg-gray-50 rounded-lg p-3">
                                     <div class="flex items-center justify-between">
-                                        <h4 class="font-semibold text-gray-800"></h4>
-                                        <span class="text-sm text-gray-500">Il y a 2 heures</span>
+                                        <h4 class="font-semibold text-gray-800">{{  optional($comment->user)->name}}</h4>
+                                        <span class="text-sm text-gray-500">{{$comment->created_at}}</span>
                                     </div>
                                     <p class="text-gray-600">{{$comment->commentaire}}</p>
                                 </div>
