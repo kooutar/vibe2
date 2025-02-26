@@ -7,6 +7,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-pink-100 to-purple-100">
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-pink-600">MonSite</div>
+                <div class="flex items-center space-x-4">
+                    <a href="/index" class="text-purple-700 hover:text-pink-500">Accueil</a>
+                    <a href="/Suggestions" class="text-purple-700 hover:text-pink-500">Suggestions</a>
+                    <a href="/invitations" class="text-purple-700 hover:text-pink-500">Invitations</a>
+                    <a href="/logout" class="text-purple-700 hover:text-pink-500">Déconnexion</a>
+                </div>
+            </div>
+        </div>
+    </nav>
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold text-center text-pink-600 mb-8">Suggestions d'amis</h1>
         <div class="max-w-md mx-auto mb-8">

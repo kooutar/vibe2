@@ -14,9 +14,9 @@
         <div class="flex justify-between items-center">
             <div class="text-2xl font-bold text-pink-600">MonSite</div>
             <div class="flex items-center space-x-4">
-                <a href="index.html" class="text-purple-700 hover:text-pink-500">Accueil</a>
-                <a href="profile.html" class="text-purple-700 hover:text-pink-500">Profile</a>
-                <a href="suggestions.html" class="text-purple-700 hover:text-pink-500">Suggestions</a>
+                <a href="/index" class="text-purple-700 hover:text-pink-500">Accueil</a>
+                <a href="/Suggestions" class="text-purple-700 hover:text-pink-500">Suggestions</a>
+                <a href="/invitations" class="text-purple-700 hover:text-pink-500">Invitations</a>
                 <a href="/logout" class="text-purple-700 hover:text-pink-500">Déconnexion</a>
             </div>
         </div>
@@ -61,7 +61,7 @@
                 <div class="p-6">
                     <!-- Author Info -->
                     <div class="flex items-center mb-4">
-                        <img src="{{$post->user->profile_image}}"
+                        <img src="{{ asset('storage/'.$post->user->profile_image)}}"
                              alt="Profile"
                              class="w-10 h-10 rounded-full object-cover">
                         <div class="ml-3">
@@ -89,21 +89,15 @@
                                 <i class="far fa-share-square"></i>
                             </button>
                         </div>
-
-                        <div class="flex space-x-2">
-                            <button class="text-purple-500 hover:text-purple-600">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="text-pink-500 hover:text-pink-600">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
+                       
                     </div>
 
                     <!-- Comments Section -->
                     <div class="comments-section hidden mt-4 border-t pt-4">
-                        <form class="mb-4">
-                                <textarea placeholder="Ajouter un commentaire..."
+                        <form class="mb-4" action="{{ route('addComment')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="post_id" value="{{$post->id}}">
+                                <textarea  name="comment" placeholder="Ajouter un commentaire..."
                                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-pink-500"
                                           rows="2"></textarea>
                             <button class="mt-2 bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600">

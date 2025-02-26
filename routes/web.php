@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\postController;
 use App\Http\Controllers\FreindController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\redrecteController;
 
@@ -48,3 +49,6 @@ Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('
 
 Route::post('/accepter',[FreindController::class,'AccepterFreind'])->name('AccepterInvitation');
 Route::post('/refuser',[FreindController::class,'RefuserFreind'])->name('RefuserFreind');
+
+
+Route::post('/addcomment',[CommentController::class,'store'])->name('addComment');
