@@ -77,10 +77,16 @@
                     <!-- Interaction Buttons -->
                     <div class="flex items-center justify-between border-t pt-4">
                         <div class="flex items-center space-x-4">
-                            <button class="flex items-center space-x-1 text-gray-500 hover:text-pink-500">
-                                <i class="far fa-heart"></i>
-                                <span>42</span>
-                            </button>
+                            <form action="{{route('addLike')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="id_post" value="{{$post->id}}">
+                                <button id="" class="heartButton flex items-center space-x-1 text-gray-500 hover:text-pink-500 p-2 rounded-md transition-colors duration-200">
+                                    <i class="far fa-heart"></i>
+                                    <span>42</span>
+                                  </button>
+                            </form>
+                            
+                             
                             <button class="flex items-center space-x-1 text-gray-500 hover:text-purple-500">
                                 <i class="far fa-comment"></i>
                                 <span>{{$post->comments->count()}}</span>
@@ -154,6 +160,31 @@
             commentsSection.classList.toggle('hidden');
         });
     });
+
+    const heartButtons = document.querySelectorAll('.heartButton');
+    
+    heartButtons.forEach((heartButton) => {
+  let isLiked = false;
+  heartButton.addEventListener('click', function () {
+    isLiked = !isLiked;
+
+    if (isLiked) {
+     
+      heartButton.classList.remove('text-gray-500');
+      heartButton.classList.add('text-red-500');
+      heartButton.querySelector('i').classList.remove('far');
+      heartButton.querySelector('i').classList.add('fas');
+    } else {
+   
+      heartButton.classList.remove('text-red-500');
+      heartButton.classList.add('text-gray-500');
+      heartButton.querySelector('i').classList.remove('fas');
+      heartButton.querySelector('i').classList.add('far');
+    }
+  });
+});
+
+    
 </script>
 </body>
 </html>

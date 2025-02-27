@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\postController;
 use App\Http\Controllers\FreindController;
 use App\Http\Controllers\CommentController;
@@ -52,3 +53,5 @@ Route::post('/refuser',[FreindController::class,'RefuserFreind'])->name('Refuser
 
 
 Route::post('/addcomment',[CommentController::class,'store'])->name('addComment');
+
+Route::post('/addLike',[LikeController::class,'store'])->name('addLike');
