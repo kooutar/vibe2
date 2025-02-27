@@ -81,9 +81,14 @@
                                 @csrf
                                 <input type="hidden" name="id_post" value="{{$post->id}}">
                                 <button id="" class="heartButton flex items-center space-x-1 text-gray-500 hover:text-pink-500 p-2 rounded-md transition-colors duration-200">
+                                      
+                                     @if($post->likes)
                                     <i class="far fa-heart"></i>
-                                    <span>42</span>
-                                  </button>
+                                    @else
+                                    <i class="fas fa-heart"></i>
+                                    @endif
+                                    <span>{{$post->likes()->count()}}</span>
+                                </button>
                             </form>
                             
                              

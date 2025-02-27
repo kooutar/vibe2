@@ -82,7 +82,7 @@ public function comments(){
 }
 
 public function likes(){
-    return $this->hasMany(like::class);
+    return $this->hasMany(like::class,'id_user');
 }
 
 
