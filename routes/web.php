@@ -24,6 +24,7 @@ Route::get('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
+Route::get('/amis',[FreindController::class,'mesAmies']);
 
 Route::get('/invitations',[FreindController::class,'showRequestEnvoye']);
 

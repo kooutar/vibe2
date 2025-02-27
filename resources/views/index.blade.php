@@ -17,6 +17,7 @@
                 <a href="/index" class="text-purple-700 hover:text-pink-500">Accueil</a>
                 <a href="/dashboard" class="text-purple-700 hover:text-pink-500">Profil</a>
                 <a href="/Suggestions" class="text-purple-700 hover:text-pink-500">Suggestions</a>
+                <a href="/amis" class="text-purple-700 hover:text-pink-500 border-b-2 border-pink-500">Mes Amis</a>
                 <a href="/invitations" class="text-purple-700 hover:text-pink-500">Invitations</a>
                 <a href="/logout" class="text-purple-700 hover:text-pink-500">Déconnexion</a>
             </div>

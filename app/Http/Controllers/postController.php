@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class postController extends Controller
 {
-    //
+    
 
     public function store(Request $request){
      $validation= $request->validate([
@@ -21,8 +21,6 @@ class postController extends Controller
         'titre'=>$validation['title'],
         'text'=>$validation['content'],
       ]);
-    //   return view('dashboard',compact('post'));
-
       return redirect('/dashboard');
     }
 
