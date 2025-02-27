@@ -15,6 +15,7 @@
             <div class="text-2xl font-bold text-pink-600">MonSite</div>
             <div class="flex items-center space-x-4">
                 <a href="/index" class="text-purple-700 hover:text-pink-500">Accueil</a>
+                <a href="/dashboard" class="text-purple-700 hover:text-pink-500">Profil</a>
                 <a href="/Suggestions" class="text-purple-700 hover:text-pink-500">Suggestions</a>
                 <a href="/invitations" class="text-purple-700 hover:text-pink-500">Invitations</a>
                 <a href="/logout" class="text-purple-700 hover:text-pink-500">Déconnexion</a>
@@ -83,7 +84,7 @@
                                 <button id="" class="heartButton flex items-center space-x-1 text-gray-500 hover:text-pink-500 p-2 rounded-md transition-colors duration-200">
                                       
                                      @if($post->likes->contains('id_user',auth()->id()))
-                                    <i class="fas fa-heart"></i>
+                                    <i class="fas fa-heart text-red-500"></i>
                                     @else
                                     <i class="far fa-heart"></i>
                                     @endif

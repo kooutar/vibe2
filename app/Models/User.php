@@ -72,6 +72,12 @@ public function receivedInvitations()
                
 }
 
+public function friends()
+{
+    return $this->belongsToMany(User::class, 'invitations', 'receiver_id', 'sender_id')->wherePivot('status','accepted');
+               
+}
+
 public function hasSentFriendRequest($userId)
 {
     return $this->sentInvitations()->where('receiver_id', $userId)->exists();

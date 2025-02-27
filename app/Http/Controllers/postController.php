@@ -66,12 +66,26 @@ class postController extends Controller
 
     public function getAllPosts()
     {
-        $posts=Post::all();
-        return view('index',compact('posts'));
+      
+        $user = auth()->user();
+    
+        
+     
+        $friendIds = $user->friends()->pluck('sender_id')->toArray(); 
+    
+      
+        $friendIds[] = $user->id;
+    
+       
+        $posts = Post::whereIn('id_user', $friendIds)
+                     ->orderBy('created_at', 'desc') 
+                     ->get();
+    
+      
+        return view('index', compact('posts'));
     }
-
     public function getPostUsr($id){
-        $posts = Post::with(['comments.user'])->findOrFail($id);
+        $posts = Post::with(['comments.user'])->whefindOrFail($id);
          return view('profile', compact('posts'));
     }
    
