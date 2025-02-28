@@ -18,10 +18,21 @@ class AuthController{
             'password' => 'required|min:6',
         ]);
         // ************//
+       
+    $basePseudo = str_replace(' ', '', $validation['name']); 
+    $pseudo = $basePseudo;
+    $count = 1;
+
+   
+    while (User::where('pseudo', $pseudo)->exists()) {
+        $pseudo = $basePseudo . $count; 
+        $count++;
+    }
         User::create([
             'name' => $validation['name'],
             'email' => $validation['email'],
             'password' => bcrypt($validation['password']),
+            'pseudo'=>$pseudo ,
         ]);
 
       return  redirect('/connection')->with('message' ,'registre successfully');
@@ -52,7 +63,7 @@ class AuthController{
         $token = Str::random(60);
         DB::table('password_resets')->where('email', $validate['email'])->delete();
 
-    // Insérer le nouveau token dans la base de données
+  
       DB::table('password_resets')->insert([
         'email' => $validate['email'],
         'token' => $token,

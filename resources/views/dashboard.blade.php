@@ -41,9 +41,12 @@
                 <!-- Profile Picture -->
                 <div class="relative -mt-24 mb-4">
                     <div class="w-32 h-32 mx-auto relative">
-
+                        @if($user->profile_image)
                         <img src="{{ asset('storage/'.$user->profile_image)}}" alt="profile"
                              class="w-full h-full rounded-full border-4 border-white shadow-lg object-cover">
+                             @else
+                             <img src="{{ asset('storage/profile_images/anonyme.jpeg')}}" alt="p" srcset="">
+                             @endif
                         <button id="bteUplodeImage" class="absolute bottom-0 right-0 bg-pink-500 p-2 rounded-full shadow-lg hover:bg-pink-600 text-white">
                             <i class="fas fa-camera"></i>
                         </button>
@@ -59,7 +62,7 @@
                             <i class="fas fa-edit"></i>
                         </button>
                     </div>
-                    <p class="text-gray-600">{{$user->name }}</p>
+                    <p class="text-gray-600">{{'@'.$user->pseudo }}</p>
 
                 </div>
 
@@ -107,7 +110,7 @@
     <div class="container mx-auto px-4 py-8">
         <div class="max-w-2xl mx-auto">
             <!-- Create Post Form -->
-            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            {{-- <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
                 <h2 class="text-xl font-bold text-purple-800 mb-4">Créer un nouveau post</h2>
                 <form action="{{route('poste.store')}}" method="POST" class="space-y-4">
                     @csrf
@@ -123,7 +126,7 @@
                         Publier
                     </button>
                 </form>
-            </div>
+            </div> --}}
             <div class="space-y-6">
                 <h2 class="text-xl font-bold text-purple-800 mb-4">Mes posts</h2>
 
@@ -144,6 +147,9 @@
 
                     <h3 class="text-lg font-semibold text-purple-700 mb-2">{{ $post->titre }}</h3>
                     <p class="text-gray-600 mb-4">{{ $post->text }}</p>
+                    @if($post->photo_post)
+                    <img src="{{ Storage::url($post->photo_post) }}" alt="Post Image" class="img-fluid">
+                    @endif
                     <div class="text-sm text-gray-500">
                         Publié le {{ $post->created_at->format('d/m/Y à H:i') }}
                     </div>

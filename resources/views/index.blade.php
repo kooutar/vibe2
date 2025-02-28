@@ -24,35 +24,63 @@
         </div>
     </div>
 </nav>
-
-<!-- Main Content -->
 <div class="container mx-auto px-4 py-8">
-    <!-- Search and Filter Section -->
+    <!-- Nouvelle section pour créer un post -->
     <div class="max-w-4xl mx-auto mb-8">
         <div class="bg-white rounded-lg shadow-lg p-6">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <!-- Search Bar -->
-                <div class="flex-1">
-                    <form class="flex gap-2">
-                        <input type="text"
-                               placeholder="Rechercher des posts..."
-                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-pink-500">
-                        <button type="submit" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </form>
-                </div>
-                <!-- Filter Dropdown -->
-                <div class="flex items-center gap-2">
-                    <select class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-pink-500">
-                        <option value="recent">Plus récents</option>
-                        <option value="popular">Plus populaires</option>
-                        <option value="trending">Tendances</option>
-                    </select>
+            <div class="flex items-center mb-4">
+                <img src="{{ asset('storage/'.auth()->user()->profile_image) }}"
+                     alt="Votre profil"
+                     class="w-10 h-10 rounded-full object-cover">
+                <div class="ml-3">
+                    <h3 class="text-lg font-semibold text-gray-800">{{ auth()->user()->name }}</h3>
                 </div>
             </div>
+            
+            <form action="{{ route('poste.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mb-4">
+                    <input type="text" 
+                           name="title" 
+                           placeholder="Titre de votre post" 
+                           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-pink-500 mb-3">
+                    <textarea name="content" 
+                              placeholder="Qu'avez-vous en tête ?"
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-pink-500" 
+                              rows="3"></textarea>
+                </div>
+                
+                <div class="border-t border-gray-200 pt-3">
+                    <div class="flex justify-between items-center">
+                        <div class="flex space-x-4">
+                            <label for="image-upload" class="flex items-center space-x-2 text-gray-600 hover:text-purple-500 cursor-pointer">
+                                <i class="fas fa-image"></i>
+                                <span>Photo</span>
+                                <input id="image-upload" type="file" name="image" class="hidden">
+                            </label>
+                          
+                        </div>
+                        <button type="submit" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                            Publier
+                        </button>
+                    </div>
+                    
+                    <!-- Prévisualisation de l'image -->
+                    <div id="image-preview" class="hidden mt-3">
+                        <div class="relative inline-block">
+                            <img id="preview-img" src="#" alt="Prévisualisation" class="max-h-48 rounded-lg">
+                            <button type="button" id="remove-image" class="absolute top-2 right-2 bg-gray-800 bg-opacity-50 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-900">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
+<!-- Main Content -->
+<div class="container mx-auto px-4 py-8">
+ 
 
     <!-- Posts Grid -->
     <div class="max-w-4xl mx-auto">
@@ -75,7 +103,9 @@
                     <!-- Post Content -->
                     <h2 class="text-xl font-bold text-purple-800 mb-3">{{$post->titre}}</h2>
                     <p class="text-gray-600 mb-4">{{$post->text}}</p>
-
+                    @if($post->photo_post)
+                    <img src="{{ Storage::url($post->photo_post) }}" alt="Post Image" class="img-fluid">
+                    @endif
                     <!-- Interaction Buttons -->
                     <div class="flex items-center justify-between border-t pt-4">
                         <div class="flex items-center space-x-4">

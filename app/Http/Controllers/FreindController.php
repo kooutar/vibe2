@@ -66,16 +66,19 @@ class FreindController extends Controller
         $user->receivedInvitations()->wherePivot('sender_id',$request->id_sender)->updateExistingPivot($request->id_sender,['status'=>'rejected']);
         return redirect('/invitations');
     }
-
-    function Suggestions(Request $request) {
-        $query = User::where('id', '!=', auth()->id());
-
+    public function Suggestions(Request $request)
+    {
       
-            $query->where('name', 'LIKE', '%' . $request->search . '%');
-       
-
+        $searchTerm = $request->input('search');
+        $query = User::where('id', '!=', auth()->id());
+        if ($searchTerm) {
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('name', 'LIKE', '%' . $searchTerm . '%')
+                  ->orWhere('email', 'LIKE', '%' . $searchTerm . '%')
+                  ->orWhere('pseudo', 'LIKE', '%' . $searchTerm . '%');
+            });
+        }
         $users = $query->get();
-       
         return view('Suggestions', compact('users'));
     }
 

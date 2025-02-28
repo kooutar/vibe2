@@ -5,23 +5,42 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class postController extends Controller
 {
     
+  
 
-    public function store(Request $request){
-     $validation= $request->validate([
-         'title'=>'required',
-         'content'=>'required',
-      ]);
-
-      $post=post::create([
-        'id_user'=>Auth::id(),
-        'titre'=>$validation['title'],
-        'text'=>$validation['content'],
-      ]);
-      return redirect('/dashboard');
+    public function store(Request $request)
+    {
+        // Validation des données entrantes
+        $validation = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg|max:2048', // Autorise les formats PNG, JPG, JPEG avec une taille maximale de 2 Mo
+        ]);
+    
+        // Gestion du fichier image (si présent)
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            // Stocker l'image dans le dossier public/images
+            $imagePath = $request->file('image')->store('profile_images', 'public');
+    
+            // Optionnel : Renommer l'image pour éviter les conflits de noms
+            // $imagePath = $request->file('image')->storeAs('public/images', uniqid() . '.' . $request->file('image')->extension());
+        }
+    
+        // Création du post avec les données validées et le chemin de l'image
+        Post::create([
+            'id_user' => Auth::id(),
+            'titre' => $validation['title'],
+            'text' => $validation['content'],
+            'photo_post' => $imagePath, // Enregistre le chemin relatif de l'image
+        ]);
+    
+        // Redirection vers le tableau de bord avec un message de succès
+        return redirect('/dashboard')->with('success', 'Le post a été créé avec succès.');
     }
 
 
